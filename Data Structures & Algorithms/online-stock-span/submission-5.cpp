@@ -1,0 +1,28 @@
+class StockSpanner {
+public:
+    stack<int>data;
+    StockSpanner() {}
+    
+    int next(int price) {
+        int ret = 1;
+        stack<int>temp = data;
+        int size = data.size();
+        for(int i = 0 ; i < size ; i++){
+            if(i == 0 && temp.top() > price){
+                temp.pop();
+                break;
+            }
+            if(temp.top() <= price) ret++;
+            else break;
+            temp.pop();
+        }
+        data.push(price);
+        return ret;
+    }
+};
+
+/**
+ * Your StockSpanner object will be instantiated and called as such:
+ * StockSpanner* obj = new StockSpanner();
+ * int param_1 = obj->next(price);
+ */
